@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Container } from 'semantic-ui-react';
 import NavBar from './NavBar';
 import ActivityDashboard from '../../features/activities/dashboard/ActivitiesDashboard';
@@ -25,6 +26,30 @@ function App() {
         </>
       )} />
      
+=======
+import React, { useEffect } from 'react';
+import { Container } from 'semantic-ui-react';
+import NavBar from './NavBar';
+import ActivityDashboard from '../../features/activities/dashboard/ActivitiesDashboard';
+import LoadingComponent from './LoadingComponents';
+import { useStore } from '../stores/store';
+import { observer } from 'mobx-react-lite';
+
+function App() {
+  const {activityStore} = useStore();
+  useEffect(() => {
+    activityStore.loadActivities();
+  }, [activityStore])
+
+if (activityStore.loadingInitial) return <LoadingComponent content='Loading app'/>
+
+  return (
+    <>
+      <NavBar  />
+      <Container style={{marginTop: '7em'}}>
+     <ActivityDashboard/>
+      </Container>  
+>>>>>>> e3edf5f90b2322a0f23387af1bbfe2e75eb84a36
     </>
   );
 }
